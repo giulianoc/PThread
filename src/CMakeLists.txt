@@ -40,6 +40,8 @@ include_directories("${DATETIME_INCLUDE_DIR}")
 
 add_library (PThread SHARED ${SOURCES} ${HEADERS})
 
+target_compile_definitions(PThread PRIVATE _REENTRANT)
+
 install (TARGETS PThread DESTINATION lib)
 install (FILES ${HEADERS} DESTINATION include)
 
