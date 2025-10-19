@@ -38,7 +38,17 @@ SET (HEADERS
 include_directories("${ERROR_INCLUDE_DIR}")
 include_directories("${DATETIME_INCLUDE_DIR}")
 
+if(APPLE)
+	link_directories("${ERROR_LIB_DIR}")
+	link_directories("${DATETIME_LIB_DIR}")
+endif()
+
 add_library (PThread SHARED ${SOURCES} ${HEADERS})
+
+if(APPLE)
+	target_link_libraries(PThread PRIVATE Error)
+	target_link_libraries(PThread PRIVATE Datetime)
+endif()
 
 target_compile_definitions(PThread PRIVATE _REENTRANT)
 
