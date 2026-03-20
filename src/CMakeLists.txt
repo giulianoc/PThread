@@ -53,5 +53,7 @@ endif()
 target_compile_definitions(PThread PRIVATE _REENTRANT)
 
 install (TARGETS PThread DESTINATION lib)
-install (FILES ${HEADERS} DESTINATION include)
+if(NOT DEFINED PTHREAD_INSTALL_HEADERS OR PTHREAD_INSTALL_HEADERS)
+	install(FILES ${HEADERS} DESTINATION include)
+endif()
 
